@@ -1,11 +1,9 @@
 cmake_minimum_required(VERSION 4.3)
-project(CrearBiblioteca_Parte1)
+project(ProbarBiblioteca_Parte1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_library(Sobrecarga STATIC Bibliotecas/SobreCargas.cpp)
-
-add_executable(CrearBiblioteca_Parte1 main.cpp
+add_executable(ProbarBiblioteca_Parte1 main.cpp
         Bibliotecas/Utils.hpp
         Estructuras/Mascota.hpp
         Estructuras/Veterinario.hpp
@@ -14,4 +12,6 @@ add_executable(CrearBiblioteca_Parte1 main.cpp
         Bibliotecas/SobreCargas.hpp
 )
 
-target_link_libraries(CrearBiblioteca_Parte1 Sobrecarga)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${CMAKE_CURRENT_SOURCE_DIR}/Bibliotecas")
+
+target_link_libraries(ProbarBiblioteca_Parte1 PRIVATE Sobrecarga)

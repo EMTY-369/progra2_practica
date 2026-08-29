@@ -39,6 +39,5 @@ int main() {
     abrir_archivo_salida("ArchivosDeReporte/impresion_atencion.txt", output2);
     output1 << mascota1;
     output2 << atencion1;
-
     return 0;
 }
