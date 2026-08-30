@@ -14,5 +14,7 @@ using namespace std;
 #define MAX_MASCOTAS 15
 #define MAX_VETERINARIOS 8
 #define MAX_ATENCIONES 12
+#define SEIS_MESES 600
+#define ANCHO_REPORTE 60
 
 #endif //CREARBIBLIOTECA_PARTE1_UTILS_HPP
