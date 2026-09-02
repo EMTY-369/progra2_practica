@@ -3,8 +3,12 @@ project(Fuentes_Biblioteca_2025_2)
 
 set(CMAKE_CXX_STANDARD 20)
 
+add_library(Sobrecargas STATIC Bibliotecas/Sobrecargas.cpp)
+
 add_executable(Fuentes_Biblioteca_2025_2 main.cpp
-        Bibliotecas/Sobrecargas.cpp
         Bibliotecas/Sobrecargas.hpp
         Bibliotecas/Utils.hpp
-        Estructuras/Estructuras.h)
+        Estructuras/Estructuras.h
+)
+
+target_link_libraries(Fuentes_Biblioteca_2025_2 Sobrecargas)
