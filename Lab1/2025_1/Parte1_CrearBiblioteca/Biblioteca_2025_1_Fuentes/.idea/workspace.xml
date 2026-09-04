@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader"><![CDATA[{
+  "useNewFormat": true
+}]]></component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Biblioteca_2025_1_Fuentes" targetName="Sobrecargas" />
+      <config projectName="Biblioteca_2025_1_Fuentes" targetName="Biblioteca_2025_1_Fuentes" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0b359c7a-2bb0-496a-900a-c8e09ff6c00c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bibliotecas/Utils/Fuciones.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/.idea/Biblioteca_2025_1_Prueba.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/.idea/editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/Models/CadenaDeCaracteres.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/Sobrecargas.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/Utils/Fuciones.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/Utils/Fuciones.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/Utils/Utils.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/Bibliotecas/libSobrecargas.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Biblioteca_2025_1_Prueba/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bibliotecas/Fuciones.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bibliotecas/Fuciones.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bibliotecas/Utils/Fuciones.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bibliotecas/Sobrecargas.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bibliotecas/Sobrecargas.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bibliotecas/Sobrecargas.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bibliotecas/Sobrecargas.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bibliotecas/Utils.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bibliotecas/Utils/Utils.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Estructuras/CadenaDeCaracteres.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Bibliotecas/Models/CadenaDeCaracteres.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../2025_2/Parte2_UsarBiblioteca/UnaAplicacionConBibEstatica/.idea/UnaAplicacionConBibEstatica.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Biblioteca_2025_1_Fuentes.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../2025_2/Parte2_UsarBiblioteca/UnaAplicacionConBibEstatica/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../2025_2/Parte2_UsarBiblioteca/UnaAplicacionConBibEstatica/.idea/editor.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="1p31RDm0" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2026" />
+    <option name="minorVersion" value="2.2" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3IpDif4Vi5g8vpkNEnZMS02EgBn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CidrDebugProfileConversion": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="CMake Application.Biblioteca_2025_1_Fuentes">
+    <configuration name="Biblioteca_2025_1_Fuentes" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Biblioteca_2025_1_Fuentes" TARGET_NAME="Biblioteca_2025_1_Fuentes" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Biblioteca_2025_1_Fuentes" RUN_TARGET_NAME="Biblioteca_2025_1_Fuentes">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sobrecargas" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Biblioteca_2025_1_Fuentes" TARGET_NAME="Sobrecargas" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.Biblioteca_2025_1_Fuentes" />
+      <item itemvalue="CMake Application.Sobrecargas" />
+    </list>
+  </component>
+  <component name="SelectedDebugProfileService"><![CDATA[{
+  "profileIdByStamp": [
+    {
+      "first": {
+        "##RUN_CONFIGURATION##": "CMake Application.Biblioteca_2025_1_Fuentes",
+        "cmake": "CMakeBuildProfile:Debug"
+      },
+      "second": "d2d18c3f-ea96-4606-a410-3ec85bb06517"
+    }
+  ],
+  "modificationCount": 2
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0b359c7a-2bb0-496a-900a-c8e09ff6c00c" name="Changes" comment="" />
+      <created>1788452744894</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1788452744894</updated>
+      <workItem from="1788452746041" duration="22000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
