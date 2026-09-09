@@ -31,9 +31,6 @@ int leer_fecha_hora(ifstream & input, int i) {
 
 void incrementar_espacios(int *&fechas, int ***&datos_enteros, double ***&datos_de_punto_flotante, char ****&datos_de_texto,
                           int &n_datos, int &capacidad, int *&capacidades, int *&m_datos) {
-    int *aux_f, ***aux_de, *aux_cap, *aux_m;
-    double ***aux_dpf;
-    char ****aux_dt;
 
     capacidad += INCREMENTO;
 
@@ -46,18 +43,20 @@ void incrementar_espacios(int *&fechas, int ***&datos_enteros, double ***&datos_
         m_datos = new int[capacidad]{};
         //n_datos = 1;
     } else {
-        aux_f = new int[capacidad]{};
-        aux_de = new int **[capacidad]{};
-        aux_dpf = new double **[capacidad]{};
-        aux_dt = new char ***[capacidad]{};
-        aux_cap = new int [capacidad]{};
-        aux_m = new int [capacidad]{};
+        int *aux_f = new int[capacidad]{};
+        int ***aux_de = new int **[capacidad]{};
+        double ***aux_dpf = new double **[capacidad]{};
+        char ****aux_dt = new char ***[capacidad]{};
+        int *aux_cap = new int [capacidad]{};
+        int *aux_m = new int [capacidad]{};
 
         for (int i = 0; i < n_datos; i++) {
             aux_f[i] = fechas[i];
             aux_de[i] = datos_enteros[i];
             aux_dpf[i] = datos_de_punto_flotante[i];
             aux_dt[i] = datos_de_texto[i];
+            aux_cap[i] = capacidades[i];
+            aux_m[i] = m_datos[i];
         }
 
         //eliminar punteros
@@ -67,14 +66,16 @@ void incrementar_espacios(int *&fechas, int ***&datos_enteros, double ***&datos_
             delete [] datos_de_punto_flotante[i];
             delete [] datos_de_texto[i];
         }
-        delete datos_enteros;
-        delete datos_de_punto_flotante;
-        delete datos_de_texto;
+        delete [] datos_enteros;
+        delete [] datos_de_punto_flotante;
+        delete [] datos_de_texto;
 
         fechas = aux_f;
         datos_enteros = aux_de;
         datos_de_punto_flotante = aux_dpf;
         datos_de_texto = aux_dt;
+        capacidades = aux_cap;
+        m_datos = aux_m;
     }
 }
 
@@ -98,26 +99,44 @@ double leer_double( ifstream & input) {
     return dato;
 }
 
-void leer_datos(char *&id, char *&nombre, int &hora_ingreso, double &temperatura, int &sistolica, int &diastolica,
-                int &hora_salida, char *&especialidad, ifstream & input) {
+void leer_datos(int *&datos_ent, double *&datos_dou, char **&datos_cad, ifstream & input) {
     //864-13-9865,S Valadez,03:54:00,36.8,121,99,05:33:10,Ginecologia
-    id = leer_cadena(input, ',');
-    nombre = leer_cadena(input, ',');
-    hora_ingreso = leer_fecha_hora(input, 2);
-    temperatura = leer_double(input);
-    sistolica = leer_int(input);
-    diastolica = leer_int(input);
-    hora_salida = leer_fecha_hora(input, 2);
-    especialidad = leer_cadena(input, '\r');
+    datos_ent = new int [5]{};
+    datos_dou = new double [2]{};
+    datos_cad = new char *[3]{};
+
+    datos_cad[0] = leer_cadena(input, ',');
+    datos_cad[1] = leer_cadena(input, ',');
+    datos_ent[0] = leer_fecha_hora(input, 2);
+    datos_dou[0] = leer_double(input);
+    datos_ent[2] = leer_int(input);
+    datos_ent[3] = leer_int(input);
+    datos_ent[1] = leer_fecha_hora(input, 2);
+    datos_cad[2] = leer_cadena(input, '\r');
+    datos_dou[1] = 0;
+    datos_ent[4] = datos_ent[1] - datos_ent[0];
 }
 
-void agregar_datos(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas, char *id, char *nombre, int hora_ingreso,
-                  double temperatura, int sistolica, int diastolica, int hora_salida, char *especialidad) {
+void incrementar_espacios_2(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas, int &capacidades, int &m_datos) {
+    capacidades += INCREMENTO;
 
+    if (datos_entero==nullptr) {
+        datos_entero = new int *[capacidades]{};
+        datos_doubles = new double *[capacidades]{};
+        datos_cadenas = new char **[capacidades]{};
+    }
+}
+
+void agregar_datos(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas,
+                   int *&buffer_ent, double *&buffer_double, char **&buffer_cad, int &capacidades, int &m_datos) {
+    if (m_datos==capacidades) incrementar_espacios_2(datos_entero, datos_doubles, datos_cadenas,capacidades,m_datos);
+
+
+    m_datos++;
 }
 
 void insertar_ordenado(int fecha_leida, int *&fechas, int ***&datos_enteros, char ****&datos_de_texto, double ***&datos_de_punto_flotante,
-                       int n_datos ,ifstream & input) {
+                       int n_datos, int *&capacidades, int *&m_datos, ifstream & input) {
     int i=n_datos-1;
 
     while (i>=0 and fechas[i]>fecha_leida) {
@@ -125,15 +144,17 @@ void insertar_ordenado(int fecha_leida, int *&fechas, int ***&datos_enteros, cha
         **datos_enteros[i+1]=**datos_enteros[i];
         **datos_de_punto_flotante[i+1]=**datos_de_punto_flotante[i];
         ***datos_de_texto[i+1]=***datos_de_texto[i];
+        capacidades[i+1] = capacidades[i];
+        m_datos[i+1] = m_datos[i];
         i--;
     }
     fechas[i+1]=fecha_leida;
-    char *id, *nombre, *especialidad;
-    int hora_ingreso, hora_salida, sistolica, diastolica;
-    double temperatura;
-    leer_datos(id,nombre,hora_ingreso,temperatura,sistolica,diastolica,hora_salida,especialidad, input);
+    capacidades[i+1]=0;
+    m_datos[i+1]=0;
+    char **buffer_cad; int *buffer_ent; double *buffer_dou;
+    leer_datos(buffer_ent,buffer_dou,buffer_cad,input);
     agregar_datos(datos_enteros[i+1], datos_de_punto_flotante[i+1], datos_de_texto[i+1],
-                  id, nombre, hora_ingreso, temperatura, sistolica, diastolica, hora_salida, especialidad);
+                  buffer_ent, buffer_dou, buffer_cad, capacidades[i+1], m_datos[i+1]);
 }
 
 void cargar_informacion(const char *file_name, int *&fechas, int ***&datos_enteros, char ****&datos_de_texto,
@@ -148,7 +169,8 @@ void cargar_informacion(const char *file_name, int *&fechas, int ***&datos_enter
 
         if (n_datos==capacidad) incrementar_espacios(fechas, datos_enteros, datos_de_punto_flotante,datos_de_texto,
                                                      n_datos, capacidad, capacidades, m_datos);
-        insertar_ordenado(fecha_leida, fechas, datos_enteros, datos_de_texto, datos_de_punto_flotante, n_datos, input);
+        insertar_ordenado(fecha_leida, fechas, datos_enteros, datos_de_texto, datos_de_punto_flotante,
+                          n_datos, capacidades, m_datos, input);
 
         n_datos++;
     }
