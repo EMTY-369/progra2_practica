@@ -72,8 +72,9 @@ void operator<<(ofstream &output, const struct Cursos& c) {
 void operator++(struct Cursos& c, int i) {
     double promedio=0;
     promedio = (c.numpresencial*1.0)/(c.numvirtual + c.numsemipresencial + c.numpresencial)*100.0;
-    if (promedio>=50) c.tipofinal = asignar_cadena("La clase se dictará en aula");
-    else c.tipofinal = asignar_cadena("La clase se dictará 100% virtual");
+    char option1[]="La clase se dictará en aula", option2[]="La clase se dictará 100% virtual";
+    if (promedio>=50) c.tipofinal = asignar_cadena(option1);
+    else c.tipofinal = asignar_cadena(option2);
 
 }
 
