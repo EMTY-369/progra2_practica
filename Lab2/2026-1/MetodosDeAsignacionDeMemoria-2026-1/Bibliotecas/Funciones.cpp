@@ -5,7 +5,22 @@
 #include "Funciones.hpp"
 
 void completar_informacion(int *&fechas, char ****&datos_de_texto, int ***&datos_enteros, double ***&datos_de_punto_flotante) {
+    double costo;
+    cout<<"Costo por hora de una atencion: ";
+    cin >> costo;
 
+    for (int i = 0; fechas[i]; i++) {
+        int **arr1 = datos_enteros[i];
+        double **arr2 = datos_de_punto_flotante[i];
+
+        for (int j = 0; arr1[j]; j++) {
+            int *arr3 = arr1[j];
+            double *arr4 = arr2[j];
+
+            arr3[4] = arr3[1] - arr3[0];
+            arr4[1] = costo * (arr3[4]/3600.0);
+        }
+    }
 }
 
 void abrir_archivo_entrada(const char * file_name, ifstream & input) {
