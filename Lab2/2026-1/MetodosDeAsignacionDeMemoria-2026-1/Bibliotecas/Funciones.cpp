@@ -4,6 +4,10 @@
 
 #include "Funciones.hpp"
 
+void completar_informacion(int *&fechas, char ****&datos_de_texto, int ***&datos_enteros, double ***&datos_de_punto_flotante) {
+
+}
+
 void abrir_archivo_entrada(const char * file_name, ifstream & input) {
     input.open(file_name, ios::in);
     if (not input.is_open()) {
@@ -61,14 +65,26 @@ void incrementar_espacios(int *&fechas, int ***&datos_enteros, double ***&datos_
 
         //eliminar punteros
         delete [] fechas;
-        for (int i = 0; datos_enteros[i]; i++) {
-            delete [] datos_enteros[i];
-            delete [] datos_de_punto_flotante[i];
-            delete [] datos_de_texto[i];
-        }
+        // for (int i = 0; i<n_datos; i++) {
+        //     int **arr1 = datos_enteros[i];
+        //     double **arr2 = datos_de_punto_flotante[i];
+        //     char ***arr3 = datos_de_texto[i];
+        //     for (int j = 0; j<m_datos[i]; j++) {
+        //         delete[] arr1[j];
+        //         delete[] arr2[j];
+        //         char **arr4 = arr3[j];
+        //         for (int k = 0; k<3; k++) delete[] arr4[k];
+        //         delete[] arr3[j];
+        //     }
+        //     delete [] datos_enteros[i];
+        //     delete [] datos_de_punto_flotante[i];
+        //     delete [] datos_de_texto[i];
+        // }
         delete [] datos_enteros;
         delete [] datos_de_punto_flotante;
         delete [] datos_de_texto;
+        delete [] capacidades;
+        delete [] m_datos;
 
         fechas = aux_f;
         datos_enteros = aux_de;
@@ -114,7 +130,8 @@ void leer_datos(int *&datos_ent, double *&datos_dou, char **&datos_cad, ifstream
     datos_ent[1] = leer_fecha_hora(input, 2);
     datos_cad[2] = leer_cadena(input, '\r');
     datos_dou[1] = 0;
-    datos_ent[4] = datos_ent[1] - datos_ent[0];
+    datos_ent[4] = 0;
+    //datos_ent[4] = datos_ent[1] - datos_ent[0];
 }
 
 void incrementar_espacios_2(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas, int &capacidades, int &m_datos) {
@@ -124,26 +141,75 @@ void incrementar_espacios_2(int **&datos_entero, double **&datos_doubles, char *
         datos_entero = new int *[capacidades]{};
         datos_doubles = new double *[capacidades]{};
         datos_cadenas = new char **[capacidades]{};
+    } else {
+        int **aux_ent = new int *[capacidades]{};
+        double **aux_dou = new double *[capacidades]{};
+        char ***aux_cad = new char **[capacidades]{};
+
+        for (int i = 0; i<m_datos; i++) {
+            aux_ent[i] = datos_entero[i];
+            aux_dou[i] = datos_doubles[i];
+            aux_cad[i] = datos_cadenas[i];
+        }
+
+        // for (int i = 0; i<m_datos; i++) {
+        //     int *arr1 = datos_entero[i];
+        //     double *arr2 = datos_doubles[i];
+        //     char **arr3 = datos_cadenas[i];
+        //     delete [] arr1;
+        //     delete [] arr2;
+        //     for (int j = 0; j<3; j++) {
+        //         char *arr4 = arr3[j];
+        //         delete [] arr4;
+        //     }
+        //     delete [] arr3;
+        // }
+        delete [] datos_entero;
+        delete [] datos_doubles;
+        delete [] datos_cadenas;
+
+        datos_entero = aux_ent;
+        datos_doubles = aux_dou;
+        datos_cadenas = aux_cad;
     }
 }
 
 void agregar_datos(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas,
                    int *&buffer_ent, double *&buffer_double, char **&buffer_cad, int &capacidades, int &m_datos) {
-    if (m_datos==capacidades) incrementar_espacios_2(datos_entero, datos_doubles, datos_cadenas,capacidades,m_datos);
+    if (m_datos>=capacidades-1) incrementar_espacios_2(datos_entero, datos_doubles, datos_cadenas,capacidades,m_datos);
 
+    datos_entero[m_datos] = buffer_ent;
+    datos_doubles[m_datos] = buffer_double;
+    datos_cadenas[m_datos] = buffer_cad;
 
     m_datos++;
+}
+
+int buscar_fecha(int * arr, int n, int fecha) {
+    for (int i = 0; i<n; i++) {
+        if (arr[i]==fecha) return i;
+    }
+    return -1;
 }
 
 void insertar_ordenado(int fecha_leida, int *&fechas, int ***&datos_enteros, char ****&datos_de_texto, double ***&datos_de_punto_flotante,
                        int n_datos, int *&capacidades, int *&m_datos, ifstream & input) {
     int i=n_datos-1;
+    char **buffer_cad; int *buffer_ent; double *buffer_dou;
+    leer_datos(buffer_ent,buffer_dou,buffer_cad,input);
+    int pos_fecha = buscar_fecha(fechas, n_datos, fecha_leida);
+
+    if (pos_fecha!=-1) {
+        agregar_datos(datos_enteros[pos_fecha],datos_de_punto_flotante[pos_fecha],datos_de_texto[pos_fecha],
+                      buffer_ent, buffer_dou, buffer_cad,capacidades[pos_fecha], m_datos[pos_fecha]);
+        return;
+    }
 
     while (i>=0 and fechas[i]>fecha_leida) {
         fechas[i+1]=fechas[i];
-        **datos_enteros[i+1]=**datos_enteros[i];
-        **datos_de_punto_flotante[i+1]=**datos_de_punto_flotante[i];
-        ***datos_de_texto[i+1]=***datos_de_texto[i];
+        datos_enteros[i+1]=datos_enteros[i];
+        datos_de_punto_flotante[i+1]=datos_de_punto_flotante[i];
+        datos_de_texto[i+1]=datos_de_texto[i];
         capacidades[i+1] = capacidades[i];
         m_datos[i+1] = m_datos[i];
         i--;
@@ -151,8 +217,9 @@ void insertar_ordenado(int fecha_leida, int *&fechas, int ***&datos_enteros, cha
     fechas[i+1]=fecha_leida;
     capacidades[i+1]=0;
     m_datos[i+1]=0;
-    char **buffer_cad; int *buffer_ent; double *buffer_dou;
-    leer_datos(buffer_ent,buffer_dou,buffer_cad,input);
+    datos_enteros[i+1]=nullptr;
+    datos_de_punto_flotante[i+1]=nullptr;
+    datos_de_texto[i+1]=nullptr;
     agregar_datos(datos_enteros[i+1], datos_de_punto_flotante[i+1], datos_de_texto[i+1],
                   buffer_ent, buffer_dou, buffer_cad, capacidades[i+1], m_datos[i+1]);
 }
@@ -167,11 +234,10 @@ void cargar_informacion(const char *file_name, int *&fechas, int ***&datos_enter
         fecha_leida = leer_fecha_hora(input, 1);
         if (fecha_leida == -1 or input.eof()) break;
 
-        if (n_datos==capacidad) incrementar_espacios(fechas, datos_enteros, datos_de_punto_flotante,datos_de_texto,
+        if (n_datos>=capacidad-1) incrementar_espacios(fechas, datos_enteros, datos_de_punto_flotante,datos_de_texto,
                                                      n_datos, capacidad, capacidades, m_datos);
         insertar_ordenado(fecha_leida, fechas, datos_enteros, datos_de_texto, datos_de_punto_flotante,
                           n_datos, capacidades, m_datos, input);
-
         n_datos++;
     }
 }

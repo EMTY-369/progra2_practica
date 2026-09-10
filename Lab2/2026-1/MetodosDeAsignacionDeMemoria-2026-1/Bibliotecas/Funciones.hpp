@@ -15,14 +15,15 @@ void incrementar_espacios(int *&fechas, int ***&datos_enteros, double ***&datos_
                           int &n_datos, int &capacidad, int *&capacidades, int *&m_datos);
 void insertar_ordenado(int fecha_leida, int *&fechas, int ***&datos_enteros, char ****&datos_de_texto, double ***&datos_de_punto_flotante,
                        int n_datos, int *&capacidades, int *&m_datos, ifstream & input);
-void leer_datos(
-    int *&datos_ent, double *&datos_dou, char **&datos_cad, ifstream & input);
+void leer_datos(int *&datos_ent, double *&datos_dou, char **&datos_cad, ifstream & input);
 char * leer_cadena( ifstream &input, char del);
 char * asignar_cadena(char * buffer);
 double leer_double( ifstream & input);
 void agregar_datos(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas,
                    int *&buffer_ent, double *&buffer_double, char **&buffer_cad, int &capacidades, int &m_datos);
 void incrementar_espacios_2(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas, int &capacidades, int &m_datos);
+int buscar_fecha(int * arr, int n, int fecha);
+void completar_informacion(int *&fechas, char ****&datos_de_texto, int ***&datos_enteros, double ***&datos_de_punto_flotante);
 
 
 
