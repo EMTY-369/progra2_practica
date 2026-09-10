@@ -4,6 +4,84 @@
 
 #include "Funciones.hpp"
 
+void abrir_archivo_salida(const char * file_name, ofstream & output) {
+    output.open(file_name, ios::out);
+    if (not output.is_open()) {
+        cout << "Error al abrir el archivo de salida." << endl;
+        exit(1);
+    }
+}
+
+void centrear(int ancho, const char *texto, ofstream & output) {
+    int n = strlen(texto);
+    output<<setw((ancho+n)/2)<<texto<<endl;
+}
+
+void imprimir_linea(int n, char c, ofstream & output) {
+    for (int i = 0; i < n; i++) output.put(c);
+    output.put('\n');
+}
+
+void imprimir_titulo( ofstream &output) {
+    centrear(ANCHO,"CLINICA DE URGENCIAS PORFG2_SALUD",output);
+    centrear(ANCHO, "REGISTRO DE LAS ATENCIONES",output);
+    imprimir_linea(ANCHO, '=', output);
+}
+
+void imprimir_fecha_hora(int dato, ofstream & output, int tipo) {
+    int a, b, c;
+    if (tipo==1) {
+        c = dato/10000;
+        dato %= 10000;
+        b = c/100;
+        a = c%100;
+        output<<setfill('0')<<setw(2)<<a<<"/"<<setw(2)<<b<<"/"<<setw(2)<<c<<setfill(' ');
+    }
+    if (tipo==2) {
+        c = dato/3600;
+        dato %= 3600;
+        b = dato/60;
+        a = dato%60;
+        output<<setfill('0')<<setw(2)<<c<<":"<<setw(2)<<b<<":"<<setw(2)<<a<<setfill(' ');
+    }
+}
+
+void imprimir_encabezados( ofstream &output) {
+    output<<setw(67)<<"DURACION DE "<<setw(10)<<"COSTO DE LA"<<endl;
+    output<<left<<setw(15)<<"ID"<<setw(20)<<"NOMBRE"<<setw(10)<<"INGRESO"<<setw(10)<<"ALTA"<<setw(10)<<"LA ATENCION "
+          <<setw(15)<<" ATENCION "<<setw(15)<<"TEMPERATURA"<<setw(20)<<"PRESION ARTERIAL"<<"ESPECIALIDAD"<<right<<endl;
+}
+
+void reporteDeAtenciones(const char *file_name,int *&fechas, char ****&datos_de_texto, int ***&datos_enteros,
+                         double ***&datos_de_punto_flotante) {
+    ofstream output;
+    abrir_archivo_salida(file_name, output);
+    output<<fixed;
+
+    imprimir_titulo(output);
+    for (int i = 0; fechas[i]; i++) {
+        output<<"FECHA  :";
+        imprimir_fecha_hora(fechas[i], output, 1);
+        output<<endl<<"REGISTERO DE ATENCIONES: "<<endl;
+        imprimir_linea(ANCHO, '-', output);
+        imprimir_encabezados(output);
+        int  **fecha_ent=datos_enteros[i]; double **fecha_dou=datos_de_punto_flotante[i]; char ***fecha_cad=datos_de_texto[i];
+        for (int j = 0; fecha_ent[j]; j++) {
+            int *arr_ent = fecha_ent[j]; double *arr_dou = fecha_dou[j]; char **arr_cad = fecha_cad[j];
+            output<<left<<setw(15)<<arr_cad[0]<<setw(20)<<arr_cad[1]<<right;
+            imprimir_fecha_hora(arr_ent[0], output, 2);
+            output.put(' '); output.put(' ');
+            imprimir_fecha_hora(arr_ent[i],output,2);
+            output.put(' '); output.put(' ');
+            imprimir_fecha_hora(arr_ent[4], output, 2);
+            output<<setw(12)<<setprecision(2)<<arr_dou[1]<<setw(14)<<setprecision(1)<<arr_dou[0]
+                  <<setw(14)<<arr_ent[2]<<"/"<<left<<setw(13)<<arr_ent[3]<<arr_cad[2]<<endl<<right;
+        }
+        imprimir_linea(ANCHO, '=', output);
+    }
+    output.close();
+}
+
 void completar_informacion(int *&fechas, char ****&datos_de_texto, int ***&datos_enteros, double ***&datos_de_punto_flotante) {
     double costo;
     cout<<"Costo por hora de una atencion: ";

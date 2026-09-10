@@ -24,7 +24,14 @@ void agregar_datos(int **&datos_entero, double **&datos_doubles, char ***&datos_
 void incrementar_espacios_2(int **&datos_entero, double **&datos_doubles, char ***&datos_cadenas, int &capacidades, int &m_datos);
 int buscar_fecha(int * arr, int n, int fecha);
 void completar_informacion(int *&fechas, char ****&datos_de_texto, int ***&datos_enteros, double ***&datos_de_punto_flotante);
-
+void reporteDeAtenciones(const char *file_name,int *&fechas, char ****&datos_de_texto, int ***&datos_enteros,
+                         double ***&datos_de_punto_flotante);
+void abrir_archivo_salida(const char * file_name, ofstream & output);
+void imprimir_titulo( ofstream & output);
+void centrear(int ancho, const char *texto, ofstream & output);
+void imprimir_linea(int n, char c, ofstream & output);
+void imprimir_fecha_hora(int dato, ofstream & output, int tipo);
+void imprimir_encabezados( ofstream &output);
 
 
 #endif //METODOSDEASIGNACIONDEMEMORIA_2026_1_FUNCIONES_HPP

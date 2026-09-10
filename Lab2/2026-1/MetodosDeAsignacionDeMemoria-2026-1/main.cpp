@@ -1,6 +1,5 @@
 #include "Bibliotecas/Funciones.hpp"
 
-void reporteDeAtenciones(const char *file_name, int * fechas, char **** datos_de_texto, int *** datos_enteros, double *** datos_de_punto_flotante);
 
 int main() {
     int *fechas{}, ***datosEnteros{};
