@@ -33,8 +33,8 @@ void imprimir_fecha_hora(int dato, ofstream & output, int tipo) {
     if (tipo==1) {
         c = dato/10000;
         dato %= 10000;
-        b = c/100;
-        a = c%100;
+        b = dato/100;
+        a = dato%100;
         output<<setfill('0')<<setw(2)<<a<<"/"<<setw(2)<<b<<"/"<<setw(2)<<c<<setfill(' ');
     }
     if (tipo==2) {
@@ -71,7 +71,7 @@ void reporteDeAtenciones(const char *file_name,int *&fechas, char ****&datos_de_
             output<<left<<setw(15)<<arr_cad[0]<<setw(20)<<arr_cad[1]<<right;
             imprimir_fecha_hora(arr_ent[0], output, 2);
             output.put(' '); output.put(' ');
-            imprimir_fecha_hora(arr_ent[i],output,2);
+            imprimir_fecha_hora(arr_ent[1],output,2);
             output.put(' '); output.put(' ');
             imprimir_fecha_hora(arr_ent[4], output, 2);
             output<<setw(12)<<setprecision(2)<<arr_dou[1]<<setw(14)<<setprecision(1)<<arr_dou[0]
@@ -221,7 +221,7 @@ void leer_datos(int *&datos_ent, double *&datos_dou, char **&datos_cad, ifstream
     datos_ent[2] = leer_int(input);
     datos_ent[3] = leer_int(input);
     datos_ent[1] = leer_fecha_hora(input, 2);
-    datos_cad[2] = leer_cadena(input, '\r');
+    datos_cad[2] = leer_cadena(input, '\n');
     datos_dou[1] = 0;
     datos_ent[4] = 0;
     //datos_ent[4] = datos_ent[1] - datos_ent[0];

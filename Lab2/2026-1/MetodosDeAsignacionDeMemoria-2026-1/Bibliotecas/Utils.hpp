@@ -13,6 +13,6 @@ using namespace std;
 
 #define MAX_CAD 100
 #define INCREMENTO 5
-#define ANCHO 200
+#define ANCHO 140
 
 #endif //METODOSDEASIGNACIONDEMEMORIA_2026_1_UTILS_HPP
