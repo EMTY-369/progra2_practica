@@ -3,8 +3,9 @@
 
 int main() {
     struct Tabla erick;
-    inicializar_tabla(erick);
 
+    cargar_tabla_infracciones(erick, "ArchivosDeDatos/infracciones.csv");
+    recorrer_tabla(erick);
 
     return 0;
 }

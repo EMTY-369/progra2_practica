@@ -11,8 +11,10 @@
 
 using namespace std;
 
+enum infraccion {COD, DESCRIP, TIPO, MULTA};
 #define ANCHO 150
 #define INC_COL 2
 #define INC_FIL 5
+#define MAX_CAD 200
 
 #endif //INC_2025_1_UTILS_HPP
