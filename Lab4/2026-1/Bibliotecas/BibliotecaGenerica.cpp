@@ -29,21 +29,16 @@ void fusiona_listas(void *&lista1, void *lista2, bool(* verifica)(const void*, c
         dato1 = recorrido[DATO];
         dato2 = cabeza2[DATO];
         if (verifica(dato1, dato2)) {
-            listaTAD2[INICIO] = (void **)cabeza2[SIGUIENTE];
-            cabeza2[SIGUIENTE] = recorrido;
+            listaTAD2[INICIO] = (void **)cabeza2[SIGUIENTE]; cabeza2[SIGUIENTE] = recorrido;
             if (aux == nullptr) {
-                listaTAD1[INICIO] = cabeza2;
-                aux = cabeza2;
+                listaTAD1[INICIO] = cabeza2; aux = cabeza2;
             } else {
-                aux[SIGUIENTE] = cabeza2;
-                aux = (void **)aux[SIGUIENTE];
+                aux[SIGUIENTE] = cabeza2; aux = (void **)aux[SIGUIENTE];
             }
             cabeza2 = (void **)listaTAD2[INICIO];
-            *(int *)listaTAD1[LONGITUD] += 1;
-            *(int *)listaTAD2[LONGITUD] -= 1;
+            *(int *)listaTAD1[LONGITUD] += 1; *(int *)listaTAD2[LONGITUD] -= 1;
         } else {
-            if (aux == nullptr) aux = (void **)listaTAD1[INICIO];
-            else aux = recorrido;
+            aux = recorrido;
             recorrido = (void **)recorrido[SIGUIENTE];
         }
     }
@@ -51,8 +46,7 @@ void fusiona_listas(void *&lista1, void *lista2, bool(* verifica)(const void*, c
     while (listaTAD2[INICIO] != nullptr) {
         listaTAD2[INICIO] = (void **)cabeza2[SIGUIENTE];
         aux[SIGUIENTE] = cabeza2;
-        cabeza2[SIGUIENTE] = nullptr;
-        cabeza2 = (void **)listaTAD2[INICIO];
+        cabeza2[SIGUIENTE] = nullptr; cabeza2 = (void **)listaTAD2[INICIO];
         aux = (void **)aux[SIGUIENTE];
         *(int *)listaTAD1[LONGITUD] += 1;
     }
