@@ -24,7 +24,7 @@ public:
     void set_cantidad_metricas_calidades(const int cantidad_metricas_calidades);
 
     void leer(ifstream &input);
-    void imprimir(ofstream &output);
+    void imprimir(ofstream &output, int &n_activas, int &n_expiradas);
     void actualizar(const string &tipo, ifstream & input);
 
     StreamerPago();

@@ -69,6 +69,12 @@ void StreamerPago::leer(ifstream &input) {
     fecha_inicio_plan = Utils::leer_fecha(input);
 }
 
+void StreamerPago::imprimir(ofstream &output, int &n_activas, int &n_expiradas) {
+
+    Streamer::imprimir(output);
+
+}
+
 void StreamerPago::actualizar(const string &tipo, ifstream &input) {
     if (tipo == "BASIC") {
         metricas_basicas[cantidad_metricas_basicas++].leer(input);

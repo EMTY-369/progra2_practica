@@ -17,7 +17,7 @@ public:
 
     void leer(ifstream &input);
     void imprimir_info(bool cond, ofstream &output, int &n_activas, int &n_expiradas);
-    void imprimir(ofstream &output);
+    void imprimir(ofstream &output, int &n_activas, int &n_expiradas);
     void actualizar(const string &tipo,ifstream & input);
 
     StreamerGratuito();

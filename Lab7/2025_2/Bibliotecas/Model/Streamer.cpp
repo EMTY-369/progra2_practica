@@ -47,6 +47,9 @@ void Streamer::leer(ifstream &input) {
 }
 
 void Streamer::imprimir(ofstream &output) {
+    Utils::imprimir_linea(ANCHO, '=', output);
+    output<<setw((ANCHO+20)/2)<<"REPORTE DE STREAMERS"<<endl;
+    Utils::imprimir_linea(ANCHO, '=', output);
     output<<"[ST] CUENTA: "<<left<<setw(25)<<cuenta<<"| SEGUIDORES: "<<right<<setw(12)<<n_seguidores;
     output<<" | CATEGORÍA: "<<left<<setw(25)<<categoria<<right<<" | TIPO: StreamerGratuito"<<endl;
     Utils::imprimir_linea(ANCHO, '-', output);

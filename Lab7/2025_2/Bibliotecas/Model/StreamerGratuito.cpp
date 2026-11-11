@@ -54,11 +54,7 @@ void StreamerGratuito:: imprimir_info(bool cond, ofstream &output, int &n_activa
     }
 }
 
-void StreamerGratuito::imprimir(ofstream &output) {
-    int n_activas=0, n_expiradas=0;
-    Utils::imprimir_linea(ANCHO, '=', output);
-    output<<setw((ANCHO+20)/2)<<"REPORTE DE STREAMERS"<<endl;
-    Utils::imprimir_linea(ANCHO, '=', output);
+void StreamerGratuito::imprimir(ofstream &output, int &n_activas, int &n_expiradas) {
 
     Streamer::imprimir(output);
     imprimir_info(false, output, n_activas, n_expiradas);
@@ -67,12 +63,6 @@ void StreamerGratuito::imprimir(ofstream &output) {
     output<<setw(12)<<"Estado"<<setw(10)<<"Horas"<<setw(10)<<"Viewers"<<"Descripción"<<endl<<right;
 
     imprimir_info(true, output, n_activas, n_expiradas);
-    Utils::imprimir_linea(ANCHO, '-', output);
-    output<<"[UPSELL] Funcionalidad Pro. Adquiere la licencia para ver estadísticas avanzadas."<<endl;
-    Utils::imprimir_linea(ANCHO, '-', output);
-    output<<"[TOTAL] MÉTRICAS ACTICAS:"<<setw(3)<<n_activas<<" | MÉTRICAS EXPIRADAS:"<<setw(3)<<n_expiradas;
-    output<<" | FECHA DE REPORTE: 2025-11-07"<<endl;
-    Utils::imprimir_linea(ANCHO, '=', output);
 }
 
 void StreamerGratuito::actualizar(const string &tipo, ifstream &input) {
