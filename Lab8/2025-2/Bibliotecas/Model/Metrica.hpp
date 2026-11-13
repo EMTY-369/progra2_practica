@@ -22,7 +22,7 @@ public:
     virtual void leer(ifstream &input);
     virtual int obtenerTipoMetrica() = 0;
     virtual void imprimir_encabezado(ofstream & output);
-    virtual void imprimir(ofstream & output);
+    virtual void imprimir(ofstream & output) const;
 
     Metrica();
     Metrica(const Metrica &other);

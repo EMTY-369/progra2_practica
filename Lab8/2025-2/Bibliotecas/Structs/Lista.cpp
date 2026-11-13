@@ -68,7 +68,7 @@ Lista::Lista() {
 }
 
 Lista::~Lista() {
-
+    Destruir(listaDoblementeLigada);
 }
 
 void Lista::insertarRecursivo(class Nodo *recorrido, class Metrica *tipo) {

@@ -19,4 +19,8 @@ add_executable(2025_2 main.cpp
         Bibliotecas/Structs/Lista.cpp
         Bibliotecas/Structs/Lista.hpp
         Bibliotecas/Model/AdministrarMetricas.cpp
-        Bibliotecas/Model/AdministrarMetricas.hpp)
+        Bibliotecas/Model/AdministrarMetricas.hpp
+        Bibliotecas/Structs/NodoABB.cpp
+        Bibliotecas/Structs/NodoABB.hpp
+        Bibliotecas/Structs/ArbolABB.cpp
+        Bibliotecas/Structs/ArbolABB.hpp)

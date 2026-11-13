@@ -39,7 +39,7 @@ void MetricaBasica::imprimir_encabezado(ofstream &output) {
     output<<"Horas"<<setw(12)<<"Viewers"<<endl;
 }
 
-void MetricaBasica::imprimir(ofstream &output) {
+void MetricaBasica::imprimir(ofstream &output) const {
     Metrica::imprimir(output);
     output<<setw(6)<<horas_transmitidas<<setw(8)<<espectadores_promedio<<"M"<<endl;
 }

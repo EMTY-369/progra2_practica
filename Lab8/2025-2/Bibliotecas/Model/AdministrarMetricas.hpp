@@ -5,6 +5,7 @@
 #ifndef INC_2025_2_ADMINISTRARMETRICAS_HPP
 #define INC_2025_2_ADMINISTRARMETRICAS_HPP
 #include "../Structs/Lista.hpp"
+#include "../Structs/ArbolABB.hpp"
 
 class AdministrarMetricas {
 public:
@@ -13,11 +14,14 @@ public:
     void generarReporte(const string &file_name);
     void eliminarNodos();
     void eliminarLista();
+    void generarReporteArbolABB(const string &file_name);
+    void cargarArchivoArbolABB(const string &file_name);
 
     AdministrarMetricas() = default;
     ~AdministrarMetricas() = default;
 private:
     class Lista listaDeMetricas;
+    class ArbolABB arbolDeMetricas;
 };
 
 

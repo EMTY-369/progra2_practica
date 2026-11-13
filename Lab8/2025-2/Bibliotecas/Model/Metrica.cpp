@@ -51,7 +51,7 @@ void Metrica::leer(ifstream &input) {
     getline(input,descripcion,',');
     fecha_calculo = Utils::leer_fecha(input);
     fecha_expiracion = Utils::leer_fecha(input);
-    if (fecha_expiracion < FECHA_ACTUAL) estado = true;
+    if (fecha_expiracion >= FECHA_ACTUAL) estado = true;
     else estado = false;
 }
 
@@ -60,7 +60,7 @@ void Metrica::imprimir_encabezado(ofstream &output) {
           <<setw(15)<<"Estado"<<right;
 }
 
-void Metrica::imprimir(ofstream &output) {
+void Metrica::imprimir(ofstream &output) const {
     output<<left<<setw(6)<<""<<setw(10)<<id<<setw(30)<<descripcion<<setw(20)<<fecha_calculo<<setw(15)<<fecha_expiracion;
     if (estado) output<<setw(15)<<"ACTIVA";
     else output<<setw(15)<<"NO ACTIVA";

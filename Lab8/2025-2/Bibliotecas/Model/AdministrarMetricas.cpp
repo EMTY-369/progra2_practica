@@ -21,6 +21,7 @@ void AdministrarMetricas::cargarArchivo(const string &file_name) {
         if (input.eof()) break;
         getline(input, id_streamer, ',');
         class Metrica *metrica = rservar_memoria(tipo);
+        if (metrica == nullptr) input.ignore(200, '\n');
         metrica->leer(input);
         listaDeMetricas.insertar(metrica);
     }
@@ -42,6 +43,7 @@ void AdministrarMetricas::generarReporte(const string &file_name) {
     Utils::imprimir_linea(ANCHO, '-', output);
     output<<"[TOTAL] METRICAS ACTIVAS: "<<activas<<" | METRICAS EXPIRADAS: "<<expiradas<<" | FECHA DE REPORTE: "<<FECHA_ACTUAL<<endl;
     Utils::imprimir_linea(ANCHO, '=', output);
+    output.close();
 }
 
 void AdministrarMetricas::eliminarNodos() {
@@ -50,4 +52,39 @@ void AdministrarMetricas::eliminarNodos() {
 
 void AdministrarMetricas::eliminarLista() {
     listaDeMetricas.eliminarLista();
+}
+
+void AdministrarMetricas::generarReporteArbolABB(const string &file_name) {
+    ofstream output;
+    Utils::abrir_archivo(output, file_name);
+
+    output<<fixed;
+    output.precision(2);
+    Utils::imprimir_linea(ANCHO, '=', output);
+    output<<setw((ANCHO+19)/2)<<"REPORTE DE METRICAS"<<endl;
+    Utils::imprimir_linea(ANCHO, '=', output);
+
+    int activas=0, expiradas=0;
+    arbolDeMetricas.imprimir(output, activas, expiradas);
+    Utils::imprimir_linea(ANCHO, '-', output);
+    output<<"[TOTAL] METRICAS ACTIVAS: "<<activas<<" | METRICAS EXPIRADAS: "<<expiradas<<" | FECHA DE REPORTE: "<<FECHA_ACTUAL<<endl;
+    Utils::imprimir_linea(ANCHO, '=', output);
+    output.close();
+}
+
+void AdministrarMetricas::cargarArchivoArbolABB(const string &file_name) {
+    ifstream input;
+    Utils::abrir_archivo(input, file_name);
+
+    while (true) {
+        string tipo, id_streamer;
+        getline(input, tipo, ',');
+        if (input.eof()) break;
+        getline(input, id_streamer, ',');
+        class Metrica *metrica = rservar_memoria(tipo);
+        if (metrica == nullptr) input.ignore(200, '\n');
+        metrica->leer(input);
+        arbolDeMetricas.insertar(metrica);
+    }
+    input.close();
 }

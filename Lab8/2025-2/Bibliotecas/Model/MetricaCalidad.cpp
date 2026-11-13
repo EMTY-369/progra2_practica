@@ -49,7 +49,7 @@ void MetricaCalidad::imprimir_encabezado(ofstream &output) {
     output<<"Bitrate"<<setw(12)<<"Drop%"<<setw(12)<<"FPS"<<endl;
 }
 
-void MetricaCalidad::imprimir(ofstream &output) {
+void MetricaCalidad::imprimir(ofstream &output) const {
     Metrica::imprimir(output);
     output<<setw(6)<<bitrate_promedio_kbps<<setw(10)<<porcentaje_frames_perdidos<<setw(12)<<fps_promedio<<endl;
 }

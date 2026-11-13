@@ -16,7 +16,7 @@ public:
     void leer(ifstream &input) override;
     int obtenerTipoMetrica() override;
     void imprimir_encabezado(ofstream &output) override;
-    void imprimir(ofstream &output) override;
+    void imprimir(ofstream &output) const override;
 
     MetricaBasica();
     MetricaBasica(const MetricaBasica &other);

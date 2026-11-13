@@ -49,7 +49,7 @@ void MetricaEngagement::imprimir_encabezado(ofstream &output) {
     output<<"Msgs"<<setw(12)<<"Chatters"<<setw(12)<<"Clips"<<endl;
 }
 
-void MetricaEngagement::imprimir(ofstream &output) {
+void MetricaEngagement::imprimir(ofstream &output) const {
     Metrica::imprimir(output);
     output<<setw(6)<<mensajes_chat<<setw(9)<<usuarios_unicos_chat<<setw(12)<<clips_generados<<endl;
 }
