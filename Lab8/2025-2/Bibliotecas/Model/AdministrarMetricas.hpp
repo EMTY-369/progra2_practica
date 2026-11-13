@@ -16,6 +16,8 @@ public:
     void eliminarLista();
     void generarReporteArbolABB(const string &file_name);
     void cargarArchivoArbolABB(const string &file_name);
+    void eliminarNodosArbolABB();
+    void eliminarArbolABB();
 
     AdministrarMetricas() = default;
     ~AdministrarMetricas() = default;

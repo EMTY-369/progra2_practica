@@ -18,6 +18,10 @@ void ArbolABB::destruirArbol() {
     raiz = nullptr;
 }
 
+void ArbolABB::eliminarNodosABB() {
+    raiz = eliminarNodosABBRecursivo(raiz);
+}
+
 ArbolABB::ArbolABB() {
     raiz = nullptr;
 }
@@ -64,4 +68,36 @@ void ArbolABB::destruirRecursivo(class NodoABB *raiz) {
         destruirRecursivo(raiz->der);
         delete raiz;
     }
+}
+
+class NodoABB * ArbolABB::minimoArbol(class NodoABB *raiz) {
+    if (raiz==nullptr or raiz->izq==nullptr) return raiz;
+    else return minimoArbol(raiz->izq);
+}
+
+class NodoABB * ArbolABB::eliminarNodosABBRecursivo(class NodoABB *raiz) {
+    if (raiz == nullptr) return raiz;
+    raiz->izq=eliminarNodosABBRecursivo(raiz->izq);
+    raiz->der=eliminarNodosABBRecursivo(raiz->der);
+
+    if (raiz->metrica->is_estado()) {
+        return raiz;
+    } else {
+        if (raiz->izq==nullptr) {
+            class NodoABB *hijo = raiz->der;
+            delete raiz;
+            return hijo;
+        } else if (raiz->der==nullptr) {
+            class NodoABB *hijo = raiz->izq;
+            delete raiz;
+            raiz = hijo;
+        } else {
+            class NodoABB *minNodo = minimoArbol(raiz->der);
+            class Metrica *aux = raiz->metrica;
+            raiz->metrica = minNodo->metrica;
+            minNodo->metrica = aux;
+            raiz->der = eliminarNodosABBRecursivo(raiz->der);
+        }
+    }
+    return raiz;
 }

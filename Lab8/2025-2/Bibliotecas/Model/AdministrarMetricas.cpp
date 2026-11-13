@@ -88,3 +88,11 @@ void AdministrarMetricas::cargarArchivoArbolABB(const string &file_name) {
     }
     input.close();
 }
+
+void AdministrarMetricas::eliminarNodosArbolABB() {
+    arbolDeMetricas.eliminarNodosABB();
+}
+
+void AdministrarMetricas::eliminarArbolABB() {
+    arbolDeMetricas.destruirArbol();
+}
